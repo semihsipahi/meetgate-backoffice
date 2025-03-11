@@ -2,6 +2,7 @@ import Cookies from 'js-cookie';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import DashboardLayout from '../../components/Common/Dashboard/DashboardLayout';
 import { fetchResources } from '../../service/Resource/ResourceService';
 
 function Home() {
@@ -27,26 +28,28 @@ function Home() {
   };
 
   return (
-    <div>
-      <br />
-      <br />
-      <div style={{ textAlign: 'center' }}>
-        <h1>{t('api_common_resource_already_added')}</h1>
-        <br />
-        <p>{t('api_companyhandler_companycouldnotbecreated')}</p>
-        <br />
-        <button onClick={changeLanguage}>Change Language</button>
+    <DashboardLayout>
+      <div>
         <br />
         <br />
-        <button
-          onClick={() => {
-            navigate('/analyse/result');
-          }}
-        >
-          Show Analyse
-        </button>
+        <div style={{ textAlign: 'center' }}>
+          <h1>{t('api_common_resource_already_added')}</h1>
+          <br />
+          <p>{t('api_companyhandler_companycouldnotbecreated')}</p>
+          <br />
+          <button onClick={changeLanguage}>Change Language</button>
+          <br />
+          <br />
+          <button
+            onClick={() => {
+              navigate('/analyse/result');
+            }}
+          >
+            Show Analyse
+          </button>
+        </div>
       </div>
-    </div>
+    </DashboardLayout>
   );
 }
 

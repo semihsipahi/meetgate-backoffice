@@ -1,10 +1,10 @@
-import React from "react";
-import "./AppBar.css";
+import React from 'react';
+import './AppBar.css';
 
 /* MUI (Material UI) ikonları (npm install @mui/icons-material) */
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 function AppBar() {
   return (

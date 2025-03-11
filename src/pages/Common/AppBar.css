@@ -1,96 +1,97 @@
 /* Genel AppBar yapısı */
 .app-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #f8f9fa;
-    color: #344767;
-    padding: 0.5rem 1rem;
-    border-bottom: 1px solid #e0e0e0;
-  }
-  
-  /* Sol kısım: Breadcrumbs ve sayfa başlığı */
-  .app-bar-left {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Breadcrumbs */
-  .breadcrumbs {
-    display: flex;
-    align-items: center;
-    font-size: 0.9rem;
-    color: #999;
-    gap: 0.3rem;
-  }
-  
-  .breadcrumbs span {
-    white-space: nowrap;
-  }
-  
-  .page-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #344767;
-    margin: 0.2rem 0 0 0;
-  }
-  
-  /* Sağ kısım: Arama kutusu, butonlar, ikonlar */
-  .app-bar-right {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  /* Arama kutusu */
-  .search-box {
-    position: relative;
-    display: flex;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 0.2rem 0.6rem;
-    background-color: #fff;
-  }
-  
-  .search-icon {
-    color: #999;
-    margin-right: 0.3rem;
-  }
-  
-  .search-box input {
-    border: none;
-    outline: none;
-    font-size: 0.85rem;
-  }
-  
-  /* Sign in butonu */
-  .sign-in {
-    background-color: transparent;
-    border: 1px solid #344767;
-    border-radius: 8px;
-    padding: 0.4rem 0.8rem;
-    cursor: pointer;
-    color: #344767;
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition: background-color 0.2s ease, color 0.2s ease;
-  }
-  
-  .sign-in:hover {
-    background-color: #344767;
-    color: #fff;
-  }
-  
-  /* İkonlar (Bildirim, Kullanıcı) */
-  .icon {
-    font-size: 1.2rem;
-    cursor: pointer;
-    color: #344767;
-    transition: color 0.2s ease;
-  }
-  
-  .icon:hover {
-    color: #1D4ED8; /* Hover'da biraz daha belirgin mavi */
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f8f9fa;
+  color: #344767;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Sol kısım: Breadcrumbs ve sayfa başlığı */
+.app-bar-left {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #999;
+  gap: 0.3rem;
+}
+
+.breadcrumbs span {
+  white-space: nowrap;
+}
+
+.page-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #344767;
+  margin: 0.2rem 0 0 0;
+}
+
+/* Sağ kısım: Arama kutusu, butonlar, ikonlar */
+.app-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Arama kutusu */
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.2rem 0.6rem;
+  background-color: #fff;
+}
+
+.search-icon {
+  color: #999;
+  margin-right: 0.3rem;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  font-size: 0.85rem;
+}
+
+/* Sign in butonu */
+.sign-in {
+  background-color: transparent;
+  border: 1px solid #344767;
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  color: #344767;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.sign-in:hover {
+  background-color: #344767;
+  color: #fff;
+}
+
+/* İkonlar (Bildirim, Kullanıcı) */
+.icon {
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #344767;
+  transition: color 0.2s ease;
+}
+
+.icon:hover {
+  color: #1d4ed8; /* Hover'da biraz daha belirgin mavi */
+}

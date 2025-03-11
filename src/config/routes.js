@@ -1,4 +1,3 @@
-// src/config/routes.js
 import { createElement } from 'react';
 import PrivateRoute from '../components/Auth/PrivateRoute';
 import AnalyseResult from '../pages/Analyse/Result/AnalyseResult';
@@ -6,7 +5,7 @@ import Login from '../pages/Auth/Login';
 import Blank from '../pages/Blank/Blank';
 import Home from '../pages/Home/Home';
 import CreateQuestion from '../pages/Question/Creation/CreateQuestion';
-import sidebar from '../pages/Common/SideBar';
+import ListQuestion from '../pages/Question/List/ListQuestion';
 
 const routes = [
   {
@@ -33,21 +32,19 @@ const routes = [
     title: 'Create Question',
     protected: true,
   },
-  
+  {
+    path: '/question/list',
+    element: createElement(PrivateRoute, {}, createElement(ListQuestion)),
+    title: 'Create Question',
+    protected: true,
+  },
+
   {
     path: '/analyse/result',
     element: createElement(PrivateRoute, {}, createElement(AnalyseResult)),
     title: 'Analyse Result',
     protected: true,
   },
-
-  {
-    path: '/common/dashboard',
-    element: createElement(DashboardLayout),
-    title: 'Dashboard',
-    protected: true,
-}
-
 ];
 
 export default routes;
