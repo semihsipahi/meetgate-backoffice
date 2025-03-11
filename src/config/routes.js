@@ -6,6 +6,7 @@ import Login from '../pages/Auth/Login';
 import Blank from '../pages/Blank/Blank';
 import Home from '../pages/Home/Home';
 import CreateQuestion from '../pages/Question/Creation/CreateQuestion';
+import sidebar from '../pages/Common/SideBar';
 
 const routes = [
   {
@@ -32,10 +33,18 @@ const routes = [
     title: 'Create Question',
     protected: true,
   },
+  
   {
     path: '/analyse/result',
     element: createElement(PrivateRoute, {}, createElement(AnalyseResult)),
     title: 'Analyse Result',
+    protected: true,
+  },
+
+  {
+    path: '/common/sidebar',
+    element: createElement(sidebar),
+    title: 'Side Bar',
     protected: true,
   },
 ];
