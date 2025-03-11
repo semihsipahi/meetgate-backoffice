@@ -42,11 +42,12 @@ const routes = [
   },
 
   {
-    path: '/common/sidebar',
-    element: createElement(sidebar),
-    title: 'Side Bar',
+    path: '/common/dashboard',
+    element: createElement(DashboardLayout),
+    title: 'Dashboard',
     protected: true,
-  },
+}
+
 ];
 
 export default routes;
