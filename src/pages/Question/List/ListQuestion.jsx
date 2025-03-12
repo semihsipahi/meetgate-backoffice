@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import DashboardLayout from '../../../components/Common/Dashboard/DashboardLayout';
+import DashboardLayout from '../../../components/Common/dashboard/DashboardLayout';
 import styles from './modal.module.css';
 import './style.css';
 

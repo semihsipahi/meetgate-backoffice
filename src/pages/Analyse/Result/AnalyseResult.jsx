@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ProfileIcon from '../../../../public/images/profile_icon.png';
 import CardSection from '../../../components/Analyse/CardSelection';
+import DashboardLayout from '../../../components/Common/Dashboard/DashboardLayout';
 import { fetchMeetingRecords } from '../../../service/MeetingRecord/MeetingRecordService';
 import './style.css';
 
@@ -106,26 +107,28 @@ const AnalyseResult = () => {
   console.log(records);
 
   return (
-    <div className="app-container">
-      {/* Sol Menü (SideBar) */}
-      <SideBar />
+    <DashboardLayout>
+      <div className="app-container">
+        {/* Sol Menü (SideBar) */}
+        {/* <SideBar /> */}
 
-      {/* Ana İçerik */}
-      <main className="main-content">
-        {/* Üst Kısım: Aday Başlığı */}
-        <CandidateHeader score={rootRec?.score} />
+        {/* Ana İçerik */}
+        <main className="main-content">
+          {/* Üst Kısım: Aday Başlığı */}
+          <CandidateHeader score={rootRec?.score} />
 
-        {/* Sekme Butonları (opsiyonel) */}
-        <div className="tabs">
-          <button className="tab active">Genel Bilgiler</button>
-          <button className="tab">Analiz Detayları</button>
-        </div>
+          {/* Sekme Butonları (opsiyonel) */}
+          <div className="tabs">
+            <button className="tab active">Genel Bilgiler</button>
+            <button className="tab">Analiz Detayları</button>
+          </div>
 
-        {/* Analiz Detayları */}
-        <AnalysisDetail score={rootRec?.score} />
-        <CardSection records={records} />
-      </main>
-    </div>
+          {/* Analiz Detayları */}
+          <AnalysisDetail score={rootRec?.score} />
+          <CardSection records={records} />
+        </main>
+      </div>
+    </DashboardLayout>
   );
 };
 export default AnalyseResult;

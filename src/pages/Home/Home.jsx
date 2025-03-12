@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import DashboardLayout from '../../components/Common/Dashboard/DashboardLayout';
+import DashboardLayout from '../../components/Common/dashboard/DashboardLayout';
 import { fetchResources } from '../../service/Resource/ResourceService';
 
 function Home() {

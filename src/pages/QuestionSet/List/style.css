@@ -1,0 +1,230 @@
+/* Örnek font: Google Fonts üzerinden Inter */
+/* Bunu index.html'e de ekleyebilirsiniz:
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #f5f7fb; /* Arka plan rengi */
+  color: #1f2937; /* Genel metin rengi */
+}
+
+/* Üst Header */
+.header {
+  width: 100%;
+  height: 64px; /* Tahmini yükseklik */
+  background-color: #ffffff; /* Üst bar rengi */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem; /* Yatay boşluk */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Hafif gölge */
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-left__button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: #6366f1; /* Buton rengi (mor ton) */
+  color: #ffffff;
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-left__info {
+  font-weight: 500;
+  color: #4b5563; /* Metin rengi */
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header-right__nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #374151;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #6366f1;
+}
+
+.header-right__profile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.profile-name {
+  font-weight: 500;
+  color: #111827;
+}
+
+/* Ana İçerik */
+.main-content {
+  max-width: 1200px; /* İçerik genişliği */
+  margin: 2rem auto; /* Ortalamak için */
+  padding: 0 1rem; /* Mobil uyumluluk için yan boşluk */
+}
+
+/* Sayfa Başlığı Kısmı */
+.page-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.page-header__title {
+  font-size: 1.5rem; /* ~24px */
+  font-weight: 600;
+  color: #111827;
+}
+
+.page-header__description {
+  font-size: 0.875rem; /* ~14px */
+  color: #6b7280;
+  max-width: 600px;
+  line-height: 1.4;
+}
+
+.add-category-btn {
+  margin-top: 0.5rem;
+  padding: 0.625rem 1rem;
+  background-color: #6366f1;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  align-self: flex-end; /* Eğer sağda görünmesini isterseniz bu şekilde kalabilir */
+}
+
+.add-category-btn:hover {
+  background-color: #4f46e5;
+}
+
+/* Kategori Tablosu Bölümü */
+.category-table-section {
+  background-color: transparent;
+}
+
+.category-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  overflow: hidden; /* Radius için taşmaları engeller */
+}
+
+.category-table thead {
+  background-color: #f9fafb; /* Başlık arka planı */
+}
+
+.table-head {
+  text-align: left;
+  font-size: 0.875rem; /* ~14px */
+  font-weight: 500;
+  color: #6b7280;
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table-data {
+  font-size: 0.875rem;
+  color: #374151;
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+/* Durum Pill */
+.status {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem; /* ~12px */
+  font-weight: 500;
+}
+
+.status--published {
+  background-color: #e9f8ff; /* Yayınlandı arka planı */
+  color: #0ea5e9; /* Metin rengi */
+}
+
+.status--passive {
+  background-color: #f3f4f6; /* Pasif arka planı */
+  color: #6b7280; /* Metin rengi */
+}
+
+/* Düzenle / Sil Butonları */
+.edit-btn,
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+
+.edit-btn {
+  color: #6366f1; /* Düzenle rengi */
+}
+
+.edit-btn:hover {
+  color: #4f46e5;
+}
+
+.delete-btn {
+  color: #ef4444; /* Sil rengi */
+}
+
+.delete-btn:hover {
+  color: #dc2626;
+}
+
+/* Mobil uyumluluk için küçük dokunuşlar (isteğe bağlı) */
+@media (max-width: 768px) {
+  .header {
+    padding: 0 1rem;
+  }
+  .header-right {
+    gap: 1rem;
+  }
+  .page-header {
+    align-items: flex-start;
+  }
+  .add-category-btn {
+    align-self: flex-start;
+  }
+}

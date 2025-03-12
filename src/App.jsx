@@ -1,18 +1,27 @@
+import Modal from 'react-modal';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import '../src/global.css';
 import routes from './config/routes';
 import { AuthProvider } from './hooks/Auth/AuthContext';
-import './i18n';
+import { QuestionSetProvider } from './hooks/QuestionSet/QuestionSetContext';
+import { SideBarProvider } from './hooks/SideBar/SideBarContext';
+('./i18n');
+
+Modal.setAppElement('#root');
 
 function App() {
   return (
     <Router>
       <AuthProvider>
-        <ToastContainer />
-        <div style={{ backgroundColor: '#E9EEFA', minHeight: '100vh' }}>
-          <AppRoutes />
-        </div>
+        <SideBarProvider>
+          <QuestionSetProvider>
+            <ToastContainer />
+            <div style={{ backgroundColor: '#E9EEFA', minHeight: '100vh' }}>
+              <AppRoutes />
+            </div>
+          </QuestionSetProvider>
+        </SideBarProvider>
       </AuthProvider>
     </Router>
   );

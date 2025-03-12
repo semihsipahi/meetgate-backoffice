@@ -28,8 +28,6 @@ class ApiService {
   }
 
   initializeHeaders() {
-    console.log('Running Initialize Header');
-
     const authToken = Cookies.get('authToken');
     const language = Cookies.get('LanguageId');
 

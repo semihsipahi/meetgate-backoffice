@@ -6,6 +6,7 @@ import Blank from '../pages/Blank/Blank';
 import Home from '../pages/Home/Home';
 import CreateQuestion from '../pages/Question/Creation/CreateQuestion';
 import ListQuestion from '../pages/Question/List/ListQuestion';
+import ListQuestionSet from '../pages/QuestionSet/List/ListQuestionSet';
 
 const routes = [
   {
@@ -38,7 +39,12 @@ const routes = [
     title: 'Create Question',
     protected: true,
   },
-
+  {
+    path: '/question-set/list',
+    element: createElement(PrivateRoute, {}, createElement(ListQuestionSet)),
+    title: 'List Question Set',
+    protected: true,
+  },
   {
     path: '/analyse/result',
     element: createElement(PrivateRoute, {}, createElement(AnalyseResult)),
