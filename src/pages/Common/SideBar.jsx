@@ -1,56 +1,52 @@
-import React, { useState } from "react";
-import "./SideBar.css";
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
+import CorporateFareOutlinedIcon from '@mui/icons-material/CorporateFareOutlined';
+import HelpCenterOutlinedIcon from '@mui/icons-material/HelpCenterOutlined';
+import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
+import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import WorkspacesOutlinedIcon from "@mui/icons-material/WorkspacesOutlined";
-import HelpCenterOutlinedIcon from "@mui/icons-material/HelpCenterOutlined";
-import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
-import SmartToyOutlinedIcon from "@mui/icons-material/SmartToyOutlined";
-import CorporateFareOutlinedIcon from "@mui/icons-material/CorporateFareOutlined";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
-import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import SmartToyOutlinedIcon from '@mui/icons-material/SmartToyOutlined';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
+import React, { useState } from 'react';
+import './SideBar.css';
 
 function SideBar() {
-  const [openGorusmeler, setOpenGorusmeler] = useState(false);
-  const [openGorusmeSorulari, setOpenGorusmeSorulari] = useState(false);
-  const [openCvSihirbazi, setOpenCvSihirbazi] = useState(false);
-  const [openChatbots, setOpenChatbots] = useState(false);
-  const [openFirmaBilgileri, setOpenFirmaBilgileri] = useState(false);
-  const [openHesapBilgileri, setOpenHesapBilgileri] = useState(false);
+  const [openMenu, setOpenMenu] = useState('');
+
+  const handleMenuClick = (menuName) => {
+    setOpenMenu(openMenu === menuName ? '' : menuName);
+  };
 
   return (
     <aside className="soft-sidebar">
-      {/* Üst Logo Alanı */}
       <div className="sidebar-logo-area">
         <div className="sidebar-logo-icon">
-          <PersonOutlineOutlinedIcon/>
+          <PersonOutlineOutlinedIcon />
         </div>
         <h3 className="sidebar-logo-text">MeetGate</h3>
       </div>
 
       <hr className="sidebar-divider" />
 
-      {/* Menü Bölümü */}
       <div className="sidebar-section">
-        {/* Görüşmeler */}
         <button
-          className={`sidebar-item ${openGorusmeler ? "active" : ""}`}
-          onClick={() => setOpenGorusmeler(!openGorusmeler)}
+          className={`sidebar-item ${openMenu === 'gorusmeler' ? 'active' : ''}`}
+          onClick={() => handleMenuClick('gorusmeler')}
         >
           <div className="icon-box">
             <WorkspacesOutlinedIcon />
           </div>
           <span>Görüşmeler</span>
           <span className="chevron">
-            {openGorusmeler ? (
+            {openMenu === 'gorusmeler' ? (
               <KeyboardArrowUpOutlinedIcon />
             ) : (
               <KeyboardArrowDownOutlinedIcon />
             )}
           </span>
         </button>
-        {openGorusmeler && (
+        {openMenu === 'gorusmeler' && (
           <ul className="sidebar-submenu">
             <li>Tüm Görüşmeler</li>
             <li>Görüşme Oluştur</li>
@@ -58,24 +54,23 @@ function SideBar() {
           </ul>
         )}
 
-        {/* Görüşme Soruları */}
         <button
-          className={`sidebar-item ${openGorusmeSorulari ? "active" : ""}`}
-          onClick={() => setOpenGorusmeSorulari(!openGorusmeSorulari)}
+          className={`sidebar-item ${openMenu === 'gorusmeSorulari' ? 'active' : ''}`}
+          onClick={() => handleMenuClick('gorusmeSorulari')}
         >
           <div className="icon-box">
             <HelpCenterOutlinedIcon />
           </div>
           <span>Görüşme Soruları</span>
           <span className="chevron">
-            {openGorusmeSorulari ? (
+            {openMenu === 'gorusmeSorulari' ? (
               <KeyboardArrowUpOutlinedIcon />
             ) : (
               <KeyboardArrowDownOutlinedIcon />
             )}
           </span>
         </button>
-        {openGorusmeSorulari && (
+        {openMenu === 'gorusmeSorulari' && (
           <ul className="sidebar-submenu">
             <li>Soru Kategorileri</li>
             <li>Soru Setleri</li>
@@ -84,104 +79,97 @@ function SideBar() {
           </ul>
         )}
 
-        {/* CV Sihirbazı */}
         <button
-          className={`sidebar-item ${openCvSihirbazi ? "active" : ""}`}
-          onClick={() => setOpenCvSihirbazi(!openCvSihirbazi)}
+          className={`sidebar-item ${openMenu === 'cvSihirbazi' ? 'active' : ''}`}
+          onClick={() => handleMenuClick('cvSihirbazi')}
         >
           <div className="icon-box">
             <ArticleOutlinedIcon />
           </div>
           <span>CV Sihirbazı</span>
           <span className="chevron">
-            {openCvSihirbazi ? (
+            {openMenu === 'cvSihirbazi' ? (
               <KeyboardArrowUpOutlinedIcon />
             ) : (
               <KeyboardArrowDownOutlinedIcon />
             )}
           </span>
         </button>
-        {openCvSihirbazi && (
+        {openMenu === 'cvSihirbazi' && (
           <ul className="sidebar-submenu">
             <li>Kriter Setleri</li>
             <li>Davet Edilen Adaylar</li>
           </ul>
         )}
 
-        {/* ChatBots */}
         <button
-          className={`sidebar-item ${openChatbots ? "active" : ""}`}
-          onClick={() => setOpenChatbots(!openChatbots)}
+          className={`sidebar-item ${openMenu === 'chatbots' ? 'active' : ''}`}
+          onClick={() => handleMenuClick('chatbots')}
         >
           <div className="icon-box">
             <SmartToyOutlinedIcon />
           </div>
           <span>ChatBots</span>
           <span className="chevron">
-            {openChatbots ? (
+            {openMenu === 'chatbots' ? (
               <KeyboardArrowUpOutlinedIcon />
             ) : (
               <KeyboardArrowDownOutlinedIcon />
             )}
           </span>
         </button>
-        {openChatbots && (
+        {openMenu === 'chatbots' && (
           <ul className="sidebar-submenu">
             <li>Chat Bot Listesi</li>
             <li>Chat Bot Ekle</li>
           </ul>
         )}
-
-        {/* Firma Bilgileri */}
         <button
-          className={`sidebar-item ${openFirmaBilgileri ? "active" : ""}`}
-          onClick={() => setOpenFirmaBilgileri(!openFirmaBilgileri)}
+          className={`sidebar-item ${openMenu === 'firmaBilgileri' ? 'active' : ''}`}
+          onClick={() => handleMenuClick('firmaBilgileri')}
         >
           <div className="icon-box">
             <CorporateFareOutlinedIcon />
           </div>
           <span>Firma Bilgileri</span>
           <span className="chevron">
-            {openFirmaBilgileri ? (
+            {openMenu === 'firmaBilgileri' ? (
               <KeyboardArrowUpOutlinedIcon />
             ) : (
               <KeyboardArrowDownOutlinedIcon />
             )}
           </span>
         </button>
-        {openFirmaBilgileri && (
+        {openMenu === 'firmaBilgileri' && (
           <ul className="sidebar-submenu">
             <li>Tüm Firmalar</li>
             <li>Tüm Kullanıcılar</li>
           </ul>
         )}
 
-        {/* Hesap Bilgileri */}
         <button
-          className={`sidebar-item ${openHesapBilgileri ? "active" : ""}`}
-          onClick={() => setOpenHesapBilgileri(!openHesapBilgileri)}
+          className={`sidebar-item ${openMenu === 'hesapBilgileri' ? 'active' : ''}`}
+          onClick={() => handleMenuClick('hesapBilgileri')}
         >
           <div className="icon-box">
             <AccountCircleOutlinedIcon />
           </div>
           <span>Hesap Bilgileri</span>
           <span className="chevron">
-            {openHesapBilgileri ? (
+            {openMenu === 'hesapBilgileri' ? (
               <KeyboardArrowUpOutlinedIcon />
             ) : (
               <KeyboardArrowDownOutlinedIcon />
             )}
           </span>
         </button>
-        {openHesapBilgileri && (
+        {openMenu === 'hesapBilgileri' && (
           <ul className="sidebar-submenu">
             <li>Hesap Ayarları</li>
             <li>Şifre Değiştir</li>
           </ul>
         )}
       </div>
-
-      {/* Whatsapp Destek Butonu */}
       <div className="sidebar-whatsapp">
         <button className="whatsapp-button">
           <WhatsAppIcon className="icon" />

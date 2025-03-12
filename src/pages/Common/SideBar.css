@@ -1,11 +1,11 @@
 .soft-sidebar {
   width: 250px;
   min-height: 100vh;
-  background-color: #f8f9fa; 
-  border-right: 1px solid #e0e0e0; 
+  background-color: #f8f9fa;
+  border-right: 1px solid #e0e0e0;
   display: flex;
   flex-direction: column;
-  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   padding: 1rem;
 }
 
@@ -13,20 +13,21 @@
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
+  margin-top: 16px;
 }
 
 .sidebar-logo-icon {
   width: 40px;
   height: 40px;
   background-color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 8px;
   font-size: 1.2rem;
-  color: #344767; 
+  color: #344767;
 }
 
 .sidebar-logo-text {
@@ -67,17 +68,19 @@
   margin: 0.2rem 0;
   padding: 0.4rem 0.5rem;
   border-radius: 8px;
-  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
   color: #344767;
   font-weight: 500;
   font-size: 0.85rem;
-  justify-content: space-between; 
-  line-height: 4; 
+  justify-content: space-between;
+  line-height: 4;
   letter-spacing: 0.2px;
 }
 
 .sidebar-item:hover {
-  background-color: rgba(38, 24, 234, 0.2); 
+  background-color: rgba(38, 24, 234, 0.2);
 }
 
 .sidebar-item:active {
@@ -86,7 +89,7 @@
 
 .sidebar-item.active {
   color: #ffffff;
-  background-color: #171fb7; 
+  background-color: #171fb7;
 }
 
 .icon-box {
@@ -94,7 +97,7 @@
   align-items: center;
   justify-content: center;
   background: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   width: 36px;
   height: 36px;
@@ -105,7 +108,7 @@
 
 .icon-active-bg {
   background: #ffffff;
-  color: #171fb7; 
+  color: #171fb7;
 }
 .chevron {
   margin-left: auto;
@@ -116,7 +119,7 @@
 
 .sidebar-submenu {
   list-style: none;
-  padding-left: 3rem; 
+  padding-left: 3rem;
   margin: 0.2rem 0;
 }
 
@@ -125,7 +128,7 @@
   color: #525f7f;
   padding: 0.3rem 0;
   cursor: pointer;
-  line-height: 2.5; 
+  line-height: 2.5;
   letter-spacing: 0.2px;
 }
 
@@ -133,19 +136,18 @@
   color: #222ed3;
 }
 
-
 .sidebar-whatsapp {
-  margin-top: auto; 
+  margin-top: auto;
   display: flex;
   justify-content: center;
   padding-top: 1rem;
-  padding-bottom: 1rem; 
+  padding-bottom: 1rem;
 }
 
 .whatsapp-button {
   display: inline-flex;
   align-items: center;
-  background-color: #25D366; 
+  background-color: #25d366;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -156,15 +158,16 @@
   font-size: 0.85rem;
   justify-content: center;
   transition: background-color 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .whatsapp-button .icon {
   margin-right: 0.4rem;
+  color: #ffffff;
 }
 
 .whatsapp-button:hover {
-  background-color: #1ebe5c; 
+  background-color: #1ebe5c;
 }
 .icon-box {
   display: flex;
@@ -181,5 +184,5 @@
 }
 
 .sidebar-item.active .icon-box {
-  color: #171fb7 
+  color: #171fb7;
 }

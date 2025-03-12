@@ -1,15 +1,18 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import '../src/global.css';
 import routes from './config/routes';
 import { AuthProvider } from './hooks/Auth/AuthContext';
-('./i18n');
+import './i18n';
 
 function App() {
   return (
     <Router>
       <AuthProvider>
         <ToastContainer />
-        <AppRoutes />
+        <div style={{ backgroundColor: '#E9EEFA', minHeight: '100vh' }}>
+          <AppRoutes />
+        </div>
       </AuthProvider>
     </Router>
   );

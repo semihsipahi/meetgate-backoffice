@@ -1,38 +1,187 @@
-import React from 'react';
-import './AppBar.css';
-
-/* MUI (Material UI) ikonları (npm install @mui/icons-material) */
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
+import React, { useEffect, useState } from 'react';
+import arFlag from '../../assets/ar.png';
+import enFlag from '../../assets/en.png';
+import kocLogo from '../../assets/koc.jpg';
+import trFlag from '../../assets/tr.png';
+import './AppBar.css';
 
-function AppBar() {
+function LanguageMenu() {
+  const [selectedLanguage, setSelectedLanguage] = useState({
+    code: 'Tr',
+    flag: trFlag,
+  });
+
+  const languages = [
+    { code: 'En', flag: enFlag },
+    { code: 'Ar', flag: arFlag },
+    { code: 'Tr', flag: trFlag },
+  ];
+
+  const handleLanguageSelect = (lang) => {
+    setSelectedLanguage(lang);
+  };
+
+  const availableLanguages = languages.filter(
+    (lang) => lang.code !== selectedLanguage.code
+  );
+
   return (
-    <header className="app-bar">
-      {/* Sol kısım: Breadcrumbs + Sayfa başlığı */}
-      <div className="app-bar-left">
-        <div className="breadcrumbs">
-          <span>Dashboards</span>
-          <span>/</span>
-          <span>Default</span>
+    <div className="language-menu">
+      <div className="language-container">
+        <img
+          src={selectedLanguage.flag}
+          alt="Selected Language"
+          className="flag-icon"
+        />
+        <span className="language-text">{selectedLanguage.code}</span>
+        <KeyboardArrowDownOutlinedIcon className="language-arrow" />
+      </div>
+      <div className="language-dropdown">
+        {availableLanguages.map((lang) => (
+          <div
+            key={lang.code}
+            className="language-item"
+            onClick={() => handleLanguageSelect(lang)}
+          >
+            <img
+              src={lang.flag}
+              alt={`${lang.code} Flag`}
+              className="flag-icon"
+            />
+            <span className="language-text">{lang.code}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ProfileMenu() {
+  const [openProfile, setOpenProfile] = useState(false);
+
+  return (
+    <div
+      className="profile-menu"
+      onMouseEnter={() => setOpenProfile(true)}
+      onMouseLeave={() => setOpenProfile(false)}
+    >
+      <div className="profile-container">
+        <div className="avatar-circle">
+          <PersonOutlineOutlinedIcon className="avatar-icon" />
         </div>
-        <h2 className="page-title">Default</h2>
+        <span className="profile-name">Kenan Sipahi</span>
+        <KeyboardArrowDownOutlinedIcon
+          className="arrow-icon"
+          style={{
+            transform: openProfile ? 'rotate(180deg)' : 'rotate(0deg)',
+          }}
+        />
       </div>
 
-      {/* Sağ kısım: Arama kutusu, Sign in butonu, ikonlar */}
-      <div className="app-bar-right">
-        {/* Arama kutusu */}
-        <div className="search-box">
-          <SearchOutlinedIcon className="search-icon" />
-          <input type="text" placeholder="Type here..." />
+      <div
+        className="profile-dropdown"
+        style={{
+          transform: openProfile ? 'scaleY(1)' : 'scaleY(0)',
+          opacity: openProfile ? 1 : 0,
+          pointerEvents: openProfile ? 'auto' : 'none',
+        }}
+      >
+        <div className="dropdown-item">
+          <AccountCircleOutlinedIcon className="dropdown-item-icon" />
+          <span>Hesabıma Git</span>
         </div>
+        <div className="dropdown-item">
+          <SettingsOutlinedIcon className="dropdown-item-icon" />
+          <span>Ayarlar</span>
+        </div>
+        <div className="dropdown-separator"></div>
+        <span className="dropdown-title">Diğer Hesaplar</span>
+        <div className="dropdown-item">
+          <img src={kocLogo} alt="Koç Holding" className="account-logo" />
+          <span>Koç Holding</span>
+        </div>
+        <div className="dropdown-item">
+          <img src={kocLogo} alt="Koç Holding" className="account-logo" />
+          <span>Koç Holding</span>
+        </div>
+        <div className="dropdown-item">
+          <img src={kocLogo} alt="Koç Holding" className="account-logo" />
+          <span>Koç Holding</span>
+        </div>
+        <div className="dropdown-separator"></div>
+        <div className="dropdown-item">
+          <AddCircleOutlineOutlinedIcon className="dropdown-item-icon" />
+          <span>Hesap Ekle</span>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-        {/* Sign in butonu */}
-        <button className="sign-in">Sign in</button>
+function AppBar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
-        {/* Bildirim ve Profil ikonları */}
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const toggleSidebar = () => {
+    setSidebarCollapsed(!sidebarCollapsed);
+  };
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    if (!darkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  };
+
+  return (
+    <header className={`app-bar ${scrolled ? 'scrolled' : ''}`}>
+      <div className="app-bar-left">
+        <div className="hamburger" onClick={toggleSidebar}>
+          <MenuIcon />
+        </div>
+        <Breadcrumbs aria-label="breadcrumb">
+          <Link color="inherit" href="#">
+            Dashboards
+          </Link>
+          <Link color="inherit" href="#">
+            Default
+          </Link>
+        </Breadcrumbs>
+      </div>
+
+      <div className="app-bar-right">
         <NotificationsNoneOutlinedIcon className="icon" />
-        <PersonOutlineOutlinedIcon className="icon" />
+        <button className="dark-mode-toggle" onClick={toggleDarkMode}>
+          {darkMode ? (
+            <LightModeOutlinedIcon className="icon" />
+          ) : (
+            <DarkModeOutlinedIcon className="icon" />
+          )}
+        </button>
+        <LanguageMenu />
+        <ProfileMenu />
       </div>
     </header>
   );
