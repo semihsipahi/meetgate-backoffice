@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import DashboardLayout from '../../components/Common/dashboard/DashboardLayout';
+import DashboardLayout from '../../components/Common/Dashboard/DashboardLayout';
 import { useSideBar } from '../../hooks/SideBar/SideBarContext';
 
 function Blank() {

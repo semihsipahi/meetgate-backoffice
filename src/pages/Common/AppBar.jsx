@@ -2,6 +2,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
+import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
@@ -21,29 +22,21 @@ function LanguageMenu() {
     code: 'Tr',
     flag: trFlag,
   });
-
   const languages = [
     { code: 'En', flag: enFlag },
     { code: 'Ar', flag: arFlag },
     { code: 'Tr', flag: trFlag },
   ];
-
   const handleLanguageSelect = (lang) => {
     setSelectedLanguage(lang);
   };
-
   const availableLanguages = languages.filter(
     (lang) => lang.code !== selectedLanguage.code
   );
-
   return (
     <div className="language-menu">
       <div className="language-container">
-        <img
-          src={selectedLanguage.flag}
-          alt="Selected Language"
-          className="flag-icon"
-        />
+        <LanguageOutlinedIcon className="language-icon" />
         <span className="language-text">{selectedLanguage.code}</span>
         <KeyboardArrowDownOutlinedIcon className="language-arrow" />
       </div>
@@ -69,7 +62,6 @@ function LanguageMenu() {
 
 function ProfileMenu() {
   const [openProfile, setOpenProfile] = useState(false);
-
   return (
     <div
       className="profile-menu"
@@ -83,12 +75,9 @@ function ProfileMenu() {
         <span className="profile-name">Kenan Sipahi</span>
         <KeyboardArrowDownOutlinedIcon
           className="arrow-icon"
-          style={{
-            transform: openProfile ? 'rotate(180deg)' : 'rotate(0deg)',
-          }}
+          style={{ transform: openProfile ? 'rotate(180deg)' : 'rotate(0deg)' }}
         />
       </div>
-
       <div
         className="profile-dropdown"
         style={{
@@ -131,9 +120,8 @@ function ProfileMenu() {
 
 function AppBar() {
   const [scrolled, setScrolled] = useState(false);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
-
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 0);
@@ -141,11 +129,9 @@ function AppBar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
   const toggleSidebar = () => {
     setSidebarCollapsed(!sidebarCollapsed);
   };
-
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
     if (!darkMode) {
@@ -154,7 +140,6 @@ function AppBar() {
       document.body.classList.remove('dark-mode');
     }
   };
-
   return (
     <header className={`app-bar ${scrolled ? 'scrolled' : ''}`}>
       <div className="app-bar-left">
@@ -170,7 +155,6 @@ function AppBar() {
           </Link>
         </Breadcrumbs>
       </div>
-
       <div className="app-bar-right">
         <NotificationsNoneOutlinedIcon className="icon" />
         <button className="dark-mode-toggle" onClick={toggleDarkMode}>
@@ -180,8 +164,9 @@ function AppBar() {
             <DarkModeOutlinedIcon className="icon" />
           )}
         </button>
-        <LanguageMenu />
+        {/* Yer Değişikliği: Profil menüsü önce, dil menüsü sonra */}
         <ProfileMenu />
+        <LanguageMenu />
       </div>
     </header>
   );

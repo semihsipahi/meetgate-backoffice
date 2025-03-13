@@ -24,7 +24,7 @@ function SideBar() {
         <div className="sidebar-logo-icon">
           <PersonOutlineOutlinedIcon />
         </div>
-        <h3 className="sidebar-logo-text">MeetGate</h3>
+        <h3 className="sidebar-logo-text">Meetgate</h3>
       </div>
 
       <hr className="sidebar-divider" />
