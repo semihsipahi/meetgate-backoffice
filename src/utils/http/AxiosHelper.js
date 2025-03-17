@@ -90,8 +90,8 @@ class ApiService {
     return this.request('put', endpoint, { data });
   }
 
-  delete(endpoint) {
-    return this.request('delete', endpoint);
+  delete(endpoint, data) {
+    return this.request('delete', endpoint, { data });
   }
 
   handleError(error) {

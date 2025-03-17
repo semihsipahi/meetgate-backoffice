@@ -1,3 +1,5 @@
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import {
   Box,
   Chip,
@@ -11,30 +13,12 @@ import {
   TablePagination,
   TableRow,
 } from '@mui/material';
-import React, { useState } from 'react';
-
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
 import Stack from '@mui/material/Stack';
+import React, { useState } from 'react';
 
-function createData(adi, sekli, turu, davetli, durum) {
-  return { adi, sekli, turu, davetli, durum };
-}
-
-const rows = Array.from({ length: 50 }, (_, i) =>
-  createData(
-    `İş Analisti ${i + 1}`,
-    'Standart',
-    ['Yeterlilik', 'Envanter'],
-    `${10 + i} Kişi`,
-    i % 2 === 0 ? 'Pasif' : 'Aktif'
-  )
-);
-
-export default function ModernTable() {
+export default function ModernTable({ columns, rows }) {
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(15);
 
@@ -47,7 +31,7 @@ export default function ModernTable() {
     setPage(1);
   };
 
-  const visibleRows = rows.slice((page - 1) * rowsPerPage, page * rowsPerPage);
+  const visibleRows = rows?.slice((page - 1) * rowsPerPage, page * rowsPerPage);
 
   return (
     <Box
@@ -58,7 +42,6 @@ export default function ModernTable() {
         flexDirection: 'column',
       }}
     >
-      {/* TABLO */}
       <TableContainer
         component={Paper}
         sx={{
@@ -71,96 +54,81 @@ export default function ModernTable() {
         <Table stickyHeader>
           <TableHead>
             <TableRow sx={{ backgroundColor: '#ffffff' }}>
-              <TableCell sx={{ fontWeight: 600 }} align="center">
-                Adı
-              </TableCell>
-              <TableCell sx={{ fontWeight: 600 }} align="center">
-                Şekli
-              </TableCell>
-              <TableCell sx={{ fontWeight: 600 }} align="center">
-                Türü
-              </TableCell>
-              <TableCell sx={{ fontWeight: 600 }} align="center">
-                Davetli
-              </TableCell>
-              <TableCell sx={{ fontWeight: 600 }} align="center">
-                Durum
-              </TableCell>
-              <TableCell sx={{ fontWeight: 600 }} align="center">
-                Adaylar
-              </TableCell>
-              <TableCell sx={{ fontWeight: 600 }} align="center">
-                Düzenle / Sil
-              </TableCell>
+              {columns?.map((col, index) => (
+                <TableCell
+                  key={index}
+                  align={col.align ? col.align : 'center'}
+                  sx={{ fontWeight: 600 }}
+                >
+                  {col.label}
+                </TableCell>
+              ))}
             </TableRow>
           </TableHead>
-
           <TableBody>
-            {visibleRows.map((row, index) => {
-              const durumLabel = row.durum === 'Aktif' ? 'Aktif' : 'Pasif';
+            {visibleRows?.map((row, rowIndex) => (
+              <TableRow
+                key={rowIndex}
+                sx={{
+                  '&:hover': { backgroundColor: '#f5f7ff' },
+                  backgroundColor: rowIndex % 2 === 0 ? '#fafbff' : '#ffffff',
+                  transition: 'background-color 0.3s ease',
+                }}
+              >
+                {columns.map((col, cellIndex) => (
+                  <>
+                    {col.showChips && (
+                      <TableCell align="center" key={cellIndex}>
+                        <Box
+                          sx={{ display: 'flex', justifyContent: 'center' }}
+                          key={cellIndex}
+                        >
+                          <Chip
+                            key={cellIndex}
+                            label={row[col.field]}
+                            sx={{
+                              fontWeight: 'bold',
+                              backgroundColor:
+                                col.status === 'Aktif' ? '#d1e7dd' : '#f8d7da',
+                              color:
+                                col.status === 'Aktif' ? '#0f5132' : '#842029',
+                              fontSize: '0.875rem',
+                              borderRadius: '8px',
+                              textAlign: 'center',
+                              px: 2,
+                              py: 1,
+                              '.MuiChip-label': {
+                                padding: 0,
+                              },
+                            }}
+                          />
+                        </Box>
+                      </TableCell>
+                    )}
 
-              return (
-                <TableRow
-                  key={index}
-                  sx={{
-                    '&:hover': { backgroundColor: '#f5f7ff' },
-                    backgroundColor: index % 2 === 0 ? '#fafbff' : '#ffffff',
-                    transition: 'background-color 0.3s ease',
-                  }}
-                >
-                  <TableCell align="center">{row.adi}</TableCell>
-                  <TableCell align="center">{row.sekli}</TableCell>
-                  <TableCell align="center" sx={{ whiteSpace: 'pre-line' }}>
-                    {Array.isArray(row.turu) ? row.turu.join('\n') : row.turu}
-                  </TableCell>
-                  <TableCell align="center">{row.davetli}</TableCell>
-                  <TableCell align="center">
-                    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                      <Chip
-                        label={durumLabel}
-                        sx={{
-                          fontWeight: 'bold',
-                          backgroundColor:
-                            row.durum === 'Aktif' ? '#d1e7dd' : '#f8d7da',
-                          color: row.durum === 'Aktif' ? '#0f5132' : '#842029',
-                          fontSize: '0.875rem',
-                          borderRadius: '8px',
-                          textAlign: 'center',
-                          px: 2,
-                          py: 1,
-                          '.MuiChip-label': {
-                            padding: 0,
-                          },
-                        }}
-                      />
-                    </Box>
-                  </TableCell>
+                    {col?.normal && (
+                      <TableCell key={cellIndex} align={'center'}>
+                        {row[col.field]}
+                      </TableCell>
+                    )}
 
-                  {/* Adaylar */}
-                  <TableCell align="center">
-                    <IconButton>
-                      <VisibilityIcon
-                        sx={{ color: '#171fb7', fontSize: '1.4rem' }}
-                      />
-                    </IconButton>
-                  </TableCell>
-
-                  {/* Düzenle / Sil */}
-                  <TableCell align="center">
-                    <IconButton>
-                      <EditIcon sx={{ color: '#333' }} />
-                    </IconButton>
-                    <IconButton>
-                      <DeleteIcon sx={{ color: 'red' }} />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+                    {col?.action && (
+                      <TableCell key={cellIndex} align={'center'}>
+                        <IconButton>
+                          <EditIcon sx={{ color: '#333' }} />
+                        </IconButton>
+                        <IconButton>
+                          <DeleteIcon sx={{ color: 'red' }} />
+                        </IconButton>
+                      </TableCell>
+                    )}
+                  </>
+                ))}
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
-
       <Stack
         spacing={2}
         sx={{
@@ -173,7 +141,7 @@ export default function ModernTable() {
         }}
       >
         <Pagination
-          count={Math.ceil(rows.length / rowsPerPage)}
+          count={Math.ceil(rows?.length / rowsPerPage)}
           page={page}
           onChange={handleChangePage}
           showFirstButton
@@ -184,7 +152,7 @@ export default function ModernTable() {
         <TablePagination
           rowsPerPageOptions={[5, 10, 15, 20]}
           component="div"
-          count={rows.length}
+          count={rows?.length}
           rowsPerPage={rowsPerPage}
           page={page - 1}
           onPageChange={(e, newPage) => setPage(newPage + 1)}

@@ -1,18 +1,28 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
-import { notify } from '../../../components/ScreenMessages/Toastify';
 import { useQuestionSet } from '../../../hooks/QuestionSet/QuestionSetContext';
-import { fetchTypeList } from '../../../service/Common/CommonService';
-import { createQuestionSet } from '../../../service/QuestionSet/QuestionSetService';
+import {
+  createQuestionSet,
+  updateQuestionSet,
+} from '../../../service/QuestionSet/QuestionSetService';
 import styles from './modal.module.css';
 
-const CreateQuestionSet = () => {
-  const [types, setTypes] = useState([]);
+const CreateQuestionSet = (props) => {
   const [categoryName, setCategoryName] = useState('');
   const [categoryDescription, setCategoryDescription] = useState('');
   const [selectedStatus, setSelectedStatus] = useState();
 
   const { createModalState, setCreateModalState } = useQuestionSet();
+
+  useEffect(() => {
+    if (props.record) {
+      setCategoryName(props.record.name);
+      setCategoryDescription(props.record.description);
+      setSelectedStatus(props.record.statusId);
+    }
+  }, [props.record]);
 
   const customStyles = {
     content: {
@@ -25,30 +35,24 @@ const CreateQuestionSet = () => {
     },
   };
 
-  useEffect(() => {
-    (async () => {
-      const response = await fetchTypeList();
-
-      if (!response) {
-        return;
-      }
-
-      setTypes(response?.data);
-    })();
-  }, []);
-
   const handleOnSave = async () => {
-    const response = await createQuestionSet({
-      name: categoryName,
-      description: categoryDescription,
-      statusId: selectedStatus,
-    });
-
-    if (response.status) {
-      notify('Ekleme işlemi başarılı');
+    if (!props.record?.id) {
+      await createQuestionSet({
+        name: categoryName,
+        description: categoryDescription,
+        statusId: selectedStatus,
+      });
+    } else {
+      await updateQuestionSet({
+        id: props.record.id,
+        name: categoryName,
+        description: categoryDescription,
+        statusId: selectedStatus,
+      });
     }
 
     setCreateModalState(false);
+    props.onAfterSave();
   };
 
   return (
@@ -90,7 +94,7 @@ const CreateQuestionSet = () => {
               onChange={(e) => setCategoryDescription(e.target.value)}
             />
             <div className={styles.charCount}>
-              {categoryDescription.length} / 74
+              {categoryDescription?.length} / 74
             </div>
 
             <div className={styles.formGroup}>
@@ -99,8 +103,10 @@ const CreateQuestionSet = () => {
                 id="statusDropdown"
                 className={styles.dropdown}
                 onChange={(e) => setSelectedStatus(e.target.value)}
+                value={selectedStatus}
               >
-                {types.map((item) => {
+                <option value="0">Seçiniz</option>
+                {props.types.map((item) => {
                   return (
                     <option key={item.id} value={item.id}>
                       {item.name}

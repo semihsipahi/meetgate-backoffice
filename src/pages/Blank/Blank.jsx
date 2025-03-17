@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import DashboardLayout from '../../components/Common/Dashboard/DashboardLayout';
+
+import DashboardLayout from '../../components/Common/dashboard/DashboardLayout';
 import TableLayout from '../../components/Common/Table/TableLayout';
 import { useSideBar } from '../../hooks/SideBar/SideBarContext';
 

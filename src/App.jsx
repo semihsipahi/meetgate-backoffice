@@ -1,4 +1,3 @@
-import Modal from 'react-modal';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import '../src/global.css';
@@ -7,8 +6,6 @@ import { AuthProvider } from './hooks/Auth/AuthContext';
 import { QuestionSetProvider } from './hooks/QuestionSet/QuestionSetContext';
 import { SideBarProvider } from './hooks/SideBar/SideBarContext';
 ('./i18n');
-
-Modal.setAppElement('#root');
 
 function App() {
   return (
