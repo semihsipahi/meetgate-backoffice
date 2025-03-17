@@ -11,6 +11,7 @@ import {
   TablePagination,
   TableRow,
 } from '@mui/material';
+import React, { useState } from 'react';
 
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -18,12 +19,12 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
 import Stack from '@mui/material/Stack';
-import React, { useState } from 'react';
 
 function createData(adi, sekli, turu, davetli, durum) {
   return { adi, sekli, turu, davetli, durum };
 }
 
+// 50 satırlık örnek veri
 const rows = Array.from({ length: 50 }, (_, i) =>
   createData(
     `İş Analisti ${i + 1}`,
@@ -41,6 +42,7 @@ export default function ModernTable() {
   const handleChangePage = (event, value) => {
     setPage(value);
   };
+
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(1);
@@ -57,7 +59,7 @@ export default function ModernTable() {
         flexDirection: 'column',
       }}
     >
-      {/* TABLE */}
+      {/* TABLO */}
       <TableContainer
         component={Paper}
         sx={{
@@ -70,87 +72,101 @@ export default function ModernTable() {
         <Table stickyHeader>
           <TableHead>
             <TableRow sx={{ backgroundColor: '#ffffff' }}>
-              {[
-                'Adı',
-                'Şekli',
-                'Türü',
-                'Davetli',
-                'Durum',
-                'Adaylar',
-                'Düzenle / Sil',
-              ].map((header, index) => (
-                <TableCell
-                  key={index}
-                  sx={{
-                    fontWeight: 600,
-                    color: '#333',
-                    textAlign: 'center',
-                  }}
-                  align="center"
-                >
-                  {header}
-                </TableCell>
-              ))}
+              <TableCell sx={{ fontWeight: 600 }} align="center">
+                Adı
+              </TableCell>
+              <TableCell sx={{ fontWeight: 600 }} align="center">
+                Şekli
+              </TableCell>
+              <TableCell sx={{ fontWeight: 600 }} align="center">
+                Türü
+              </TableCell>
+              <TableCell sx={{ fontWeight: 600 }} align="center">
+                Davetli
+              </TableCell>
+              <TableCell sx={{ fontWeight: 600 }} align="center">
+                Durum
+              </TableCell>
+              <TableCell sx={{ fontWeight: 600 }} align="center">
+                Adaylar
+              </TableCell>
+              <TableCell sx={{ fontWeight: 600 }} align="center">
+                Düzenle / Sil
+              </TableCell>
             </TableRow>
           </TableHead>
 
           <TableBody>
-            {visibleRows.map((row, index) => (
-              <TableRow
-                key={index}
-                sx={{
-                  '&:hover': { backgroundColor: '#f5f7ff' },
-                  backgroundColor: index % 2 === 0 ? '#fafbff' : '#ffffff',
-                  transition: 'background-color 0.3s ease',
-                }}
-              >
-                <TableCell align="center">{row.adi}</TableCell>
-                <TableCell align="center">{row.sekli}</TableCell>
-                <TableCell align="center" sx={{ whiteSpace: 'pre-line' }}>
-                  {Array.isArray(row.turu) ? row.turu.join('\n') : row.turu}
-                </TableCell>
-                <TableCell align="center">{row.davetli}</TableCell>
-                <TableCell align="center">
-                  <Chip
-                    label={row.durum}
-                    sx={{
-                      fontWeight: 'bold',
-                      backgroundColor:
-                        row.durum === 'Aktif' ? '#D4EDDA' : '#FFF3CD',
-                      color: row.durum === 'Aktif' ? '#155724' : '#721C24',
-                      fontSize: '0.875rem',
-                      padding: '6px 12px',
-                      borderRadius: '8px',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      width: '100px',
-                      textAlign: 'center',
-                    }}
-                  />
-                </TableCell>
-                <TableCell align="center">
-                  <IconButton>
-                    <VisibilityIcon
-                      sx={{ color: '#171fb7', fontSize: '1.4rem' }}
-                    />
-                  </IconButton>
-                </TableCell>
-                <TableCell align="center">
-                  <IconButton>
-                    <EditIcon sx={{ color: '#333' }} />
-                  </IconButton>
-                  <IconButton>
-                    <DeleteIcon sx={{ color: 'red' }} />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
-            ))}
+            {visibleRows.map((row, index) => {
+              const durumLabel = row.durum === 'Aktif' ? 'Aktif' : 'Pasif';
+
+              return (
+                <TableRow
+                  key={index}
+                  sx={{
+                    '&:hover': { backgroundColor: '#f5f7ff' },
+                    backgroundColor: index % 2 === 0 ? '#fafbff' : '#ffffff',
+                    transition: 'background-color 0.3s ease',
+                  }}
+                >
+                  <TableCell align="center">{row.adi}</TableCell>
+                  <TableCell align="center">{row.sekli}</TableCell>
+                  <TableCell align="center" sx={{ whiteSpace: 'pre-line' }}>
+                    {Array.isArray(row.turu) ? row.turu.join('\n') : row.turu}
+                  </TableCell>
+                  <TableCell align="center">{row.davetli}</TableCell>
+
+                  {/* Durum (Ortada) */}
+                  <TableCell align="center">
+                    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                      <Chip
+                        label={durumLabel}
+                        sx={{
+                          fontWeight: 'bold',
+                          backgroundColor:
+                            row.durum === 'Aktif' ? '#d1e7dd' : '#f8d7da',
+                          color: row.durum === 'Aktif' ? '#0f5132' : '#842029',
+                          fontSize: '0.875rem',
+                          borderRadius: '8px',
+                          textAlign: 'center',
+                          // Arka planı büyütmek için padding değerlerini artırıyoruz
+                          px: 2,
+                          py: 1,
+                          // Label'ı da ortalamak istersek
+                          '.MuiChip-label': {
+                            padding: 0,
+                          },
+                        }}
+                      />
+                    </Box>
+                  </TableCell>
+
+                  {/* Adaylar */}
+                  <TableCell align="center">
+                    <IconButton>
+                      <VisibilityIcon
+                        sx={{ color: '#171fb7', fontSize: '1.4rem' }}
+                      />
+                    </IconButton>
+                  </TableCell>
+
+                  {/* Düzenle / Sil */}
+                  <TableCell align="center">
+                    <IconButton>
+                      <EditIcon sx={{ color: '#333' }} />
+                    </IconButton>
+                    <IconButton>
+                      <DeleteIcon sx={{ color: 'red' }} />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>
 
-      {/* PAGINATION */}
+      {/* SAYFALAMA (Pagination) */}
       <Stack
         spacing={2}
         sx={{
