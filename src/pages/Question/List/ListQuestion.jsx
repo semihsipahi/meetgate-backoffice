@@ -1,105 +1,115 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
-import Modal from 'react-modal';
 import DashboardLayout from '../../../components/Common/dashboard/DashboardLayout';
-import './style.css';
 
 import {
-  Box,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from '@mui/material';
-
-Modal.setAppElement('#root');
+import TableLayout from '../../../components/Common/Table/TableLayout';
+import {
+  fetchQuestionList,
+  removeQuestion,
+} from '../../../service/Question/QuestionService';
+import './style.css';
 
 function ListQuestion() {
-  const [categoryName, setCategoryName] = useState('');
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [categoryDescription, setCategoryDescription] = useState('');
-
   const [questions, setQuestions] = useState([]);
+  const [selectedRow, setSelectedRow] = useState(null);
+  const [removeDialog, setRemoveDialog] = useState(false);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    init();
+  }, []);
 
-  const handleUpdate = () => {
-    console.log('Kategori Güncellendi!');
+  const init = async () => {
+    const res = await fetchQuestionList();
+    if (res && res.data) {
+      setQuestions(res.data);
+    }
   };
 
-  const handleClear = () => {
-    setCategoryName('');
-    setCategoryDescription('');
+  const handleOnEdit = async (item) => {
+    console.log('Düzenlenecek soru:', item);
+    setSelectedRow(item);
   };
 
-  const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-    },
+  const handleOnRemove = async (item) => {
+    setSelectedRow(item);
+    setRemoveDialog(true);
+  };
+
+  const handleRemoveDialogClose = () => {
+    setRemoveDialog(false);
+    setSelectedRow(null);
+  };
+
+  const handleRemoveDialogSubmit = async () => {
+    setRemoveDialog(false);
+    if (!selectedRow) return;
+    await removeQuestion(selectedRow.id);
+    await init();
   };
 
   return (
     <DashboardLayout>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={() => setModalIsOpen(false)}
-        style={customStyles}
-        contentLabel="Category Modal"
-      >
-        <h2>Kategori Güncelle</h2>
-        <input
-          type="text"
-          value={categoryName}
-          onChange={(e) => setCategoryName(e.target.value)}
-          placeholder="Kategori Adı"
-        />
-        <textarea
-          value={categoryDescription}
-          onChange={(e) => setCategoryDescription(e.target.value)}
-          placeholder="Kategori Açıklaması"
-        />
-        <button onClick={handleUpdate}>Güncelle</button>
-        <button onClick={handleClear}>Temizle</button>
-        <button onClick={() => setModalIsOpen(false)}>Kapat</button>
-      </Modal>
+      <div className="main-content">
+        <section className="page-header">
+          <br />
+          <Button
+            variant="contained"
+            onClick={() => {
+              console.log('Yeni Soru Ekle modalı açılabilir...');
+            }}
+          >
+            Yeni Soru Ekle
+          </Button>
+        </section>
 
-      <Box sx={{ marginTop: 2 }}>
-        <h2>Soru Listesi</h2>
-        <TableContainer component={Paper} sx={{ maxHeight: 400 }}>
-          <Table stickyHeader>
-            <TableHead>
-              <TableRow>
-                <TableCell align="left">Title</TableCell>
-                <TableCell align="left">Description</TableCell>
-                <TableCell align="left">Weight</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {questions.map((question, index) => (
-                <TableRow key={index}>
-                  <TableCell align="left">{question.title}</TableCell>
-                  <TableCell align="left">{question.description}</TableCell>
-                  <TableCell align="left">{question.weight}</TableCell>
-                </TableRow>
-              ))}
-              {questions.length === 0 && (
-                <TableRow>
-                  <TableCell colSpan={3} align="center">
-                    Henüz soru bulunmuyor.
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
+        {questions && questions.length > 0 && (
+          <TableLayout
+            title="Soru Listesi"
+            columns={[
+              { label: 'Title', field: 'title', normal: true },
+              { label: 'Description', field: 'description', normal: true },
+              { label: 'Weight', field: 'weight', normal: true },
+              {
+                label: 'Aksiyonlar',
+                action: true,
+              },
+            ]}
+            rows={questions}
+            handleOnEdit={(e) => handleOnEdit(e)}
+            handleOnRemove={(e) => handleOnRemove(e)}
+          />
+        )}
+      </div>
+      <Dialog
+        open={removeDialog}
+        onClose={handleRemoveDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">Soru Silinecek</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            {selectedRow
+              ? `'${selectedRow.title}' başlıklı soruyu silmek istediğinize emin misiniz?`
+              : ''}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleRemoveDialogClose}>Vazgeç</Button>
+          <Button onClick={handleRemoveDialogSubmit} autoFocus>
+            Sil
+          </Button>
+        </DialogActions>
+      </Dialog>
     </DashboardLayout>
   );
 }
