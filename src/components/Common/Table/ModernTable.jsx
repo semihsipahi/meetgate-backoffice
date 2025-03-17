@@ -24,7 +24,6 @@ function createData(adi, sekli, turu, davetli, durum) {
   return { adi, sekli, turu, davetli, durum };
 }
 
-// 50 satırlık örnek veri
 const rows = Array.from({ length: 50 }, (_, i) =>
   createData(
     `İş Analisti ${i + 1}`,
@@ -115,8 +114,6 @@ export default function ModernTable() {
                     {Array.isArray(row.turu) ? row.turu.join('\n') : row.turu}
                   </TableCell>
                   <TableCell align="center">{row.davetli}</TableCell>
-
-                  {/* Durum (Ortada) */}
                   <TableCell align="center">
                     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                       <Chip
@@ -129,10 +126,8 @@ export default function ModernTable() {
                           fontSize: '0.875rem',
                           borderRadius: '8px',
                           textAlign: 'center',
-                          // Arka planı büyütmek için padding değerlerini artırıyoruz
                           px: 2,
                           py: 1,
-                          // Label'ı da ortalamak istersek
                           '.MuiChip-label': {
                             padding: 0,
                           },
@@ -166,7 +161,6 @@ export default function ModernTable() {
         </Table>
       </TableContainer>
 
-      {/* SAYFALAMA (Pagination) */}
       <Stack
         spacing={2}
         sx={{

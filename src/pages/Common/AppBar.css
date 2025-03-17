@@ -138,7 +138,6 @@
   color: #333;
 }
 
-/* Dropdown */
 .language-dropdown {
   position: absolute;
   top: calc(100% - 2px);
@@ -227,7 +226,6 @@
   transition: transform 0.3s ease;
 }
 
-/* Profil Dropdown - Genişliği küçültüldü */
 .profile-dropdown {
   position: absolute;
   top: 100%;
