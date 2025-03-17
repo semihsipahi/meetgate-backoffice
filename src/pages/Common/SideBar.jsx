@@ -72,8 +72,6 @@ function SideBar() {
         </button>
         {openMenu === 'gorusmeSorulari' && (
           <ul className="sidebar-submenu">
-            <li>Soru Kategorileri</li>
-            <li>Soru Setleri</li>
             <li>Soru Setleri</li>
             <li>Sorular</li>
           </ul>
