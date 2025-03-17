@@ -27,13 +27,13 @@
   justify-content: center;
   margin-right: 8px;
   font-size: 1.2rem;
-  color: #344767;
+  color: #0027ff;
 }
 
 .sidebar-logo-text {
   font-size: 2rem;
   font-weight: 600;
-  color: #171fb7;
+  color: #0027ff;
   white-space: nowrap;
 }
 
@@ -89,7 +89,7 @@
 
 .sidebar-item.active {
   color: #ffffff;
-  background-color: #171fb7;
+  background-color: #0027ff;
 }
 
 .icon-box {
@@ -108,7 +108,7 @@
 
 .icon-active-bg {
   background: #ffffff;
-  color: #171fb7;
+  color: #0027ff;
 }
 .chevron {
   margin-left: auto;
@@ -184,5 +184,5 @@
 }
 
 .sidebar-item.active .icon-box {
-  color: #171fb7;
+  color: #0027ff;
 }

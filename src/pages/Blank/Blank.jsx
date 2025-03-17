@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import DashboardLayout from '../../components/Common/Dashboard/DashboardLayout';
+import TableLayout from '../../components/Common/Table/TableLayout';
 import { useSideBar } from '../../hooks/SideBar/SideBarContext';
 
 function Blank() {
@@ -11,8 +12,7 @@ function Blank() {
 
   return (
     <DashboardLayout>
-      <h2>This is blank page on the meetgate-backoffice project.</h2>
-      <div>asndaskjlnsadn</div>
+      <TableLayout title="Soru Kategorileri" />
     </DashboardLayout>
   );
 }
