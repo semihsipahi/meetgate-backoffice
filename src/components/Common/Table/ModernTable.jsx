@@ -18,7 +18,12 @@ import PaginationItem from '@mui/material/PaginationItem';
 import Stack from '@mui/material/Stack';
 import React, { useState } from 'react';
 
-export default function ModernTable({ columns, rows }) {
+export default function ModernTable({
+  columns,
+  rows,
+  handleOnEdit,
+  handleOnRemove,
+}) {
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(15);
 
@@ -49,6 +54,7 @@ export default function ModernTable({ columns, rows }) {
           borderRadius: '12px',
           overflow: 'auto',
           maxHeight: '495px',
+          zIndex: 0,
         }}
       >
         <Table stickyHeader>
@@ -114,10 +120,14 @@ export default function ModernTable({ columns, rows }) {
 
                     {col?.action && (
                       <TableCell key={cellIndex} align={'center'}>
-                        <IconButton>
+                        <IconButton
+                          onClick={() => {
+                            handleOnEdit(row);
+                          }}
+                        >
                           <EditIcon sx={{ color: '#333' }} />
                         </IconButton>
-                        <IconButton>
+                        <IconButton onClick={() => handleOnRemove(row)}>
                           <DeleteIcon sx={{ color: 'red' }} />
                         </IconButton>
                       </TableCell>

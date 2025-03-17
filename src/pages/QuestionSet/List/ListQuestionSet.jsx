@@ -12,7 +12,6 @@ import React, { useEffect, useState } from 'react';
 import DashboardLayout from '../../../components/Common/dashboard/DashboardLayout';
 import TableLayout from '../../../components/Common/Table/TableLayout';
 import { useQuestionSet } from '../../../hooks/QuestionSet/QuestionSetContext';
-import { useSideBar } from '../../../hooks/SideBar/SideBarContext';
 import { fetchTypeList } from '../../../service/Common/CommonService';
 import {
   fetchQuestionSets,
@@ -22,14 +21,18 @@ import CreateQuestionSet from '../Creation/CreateQuestionSet';
 import './style.css';
 
 function ListQuestionSet() {
-  const { setActiveMenu } = useSideBar();
   const { createModalState, setCreateModalState } = useQuestionSet();
 
   const [types, setTypes] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [selectedRow, setSelectedRow] = useState(null);
   const [removeDialog, setRemoveDialog] = useState(false);
-  const [selectedRemoveRecord, setSelectedRemoveRecord] = useState();
+
+  useEffect(() => {
+    (async () => {
+      await init();
+    })();
+  }, []);
 
   const init = async () => {
     await Promise.all([fetchTypeList(), fetchQuestionSets()]).then(
@@ -40,27 +43,14 @@ function ListQuestionSet() {
             const temp = item;
             temp.name = item.name;
             temp.description = item.description;
-            temp.status = bindTypeName(item?.id);
+            temp.status = typesResponse?.data.find(
+              (x) => x.id === item?.statusId
+            )?.name;
             return temp;
           })
         );
       }
     );
-  };
-
-  useEffect(() => {
-    init();
-    setActiveMenu('question-set-list');
-  }, [setActiveMenu]);
-
-  const bindTypeName = (id) => {
-    let result = types.find((x) => x.id === id)?.name;
-
-    if (result === undefined) {
-      result = 'Henüz Belirtilmemiş';
-    }
-
-    return result;
   };
 
   const handleOnAfterSave = async () => {
@@ -72,98 +62,105 @@ function ListQuestionSet() {
     setCreateModalState(!createModalState);
   };
 
-  const handleRemoveQuestionSet = async (id) => {
-    setRemoveDialog(true);
-    setSelectedRemoveRecord(id);
-  };
-
   const handleRemoveDialogClose = () => {
     setRemoveDialog(false);
   };
 
   const handleRemoveDialogSubmit = async () => {
     setRemoveDialog(false);
-    await removeQuestionSets(selectedRemoveRecord);
+
+    await removeQuestionSets(selectedRow?.id);
     await init();
   };
 
-  return (
-    questions &&
-    questions.length > 0 && (
-      <>
-        <DashboardLayout>
-          <div>
-            <main className="main-content">
-              <section className="page-header">
-                <br />
-                <button
-                  className="add-category-btn"
-                  onClick={handleModalTransaction}
-                >
-                  Yeni Soru Seti
-                </button>
-              </section>
-              {questions && questions?.length > 0 && (
-                <>
-                  <TableLayout
-                    title="Soru Setleri"
-                    columns={[
-                      { label: 'Adı', field: 'name', normal: true },
-                      {
-                        label: 'Açıklama',
-                        field: 'description',
-                        normal: true,
-                      },
-                      {
-                        label: 'Durum',
-                        field: 'status',
-                        showChips: true,
-                        status: 'Aktif',
-                      },
-                      {
-                        label: 'Aksiyonlar',
-                        action: true,
-                      },
-                    ]}
-                    rows={questions}
-                  />
-                </>
-              )}
-            </main>
+  const handleOnEdit = async (item) => {
+    setSelectedRow(item);
+    setCreateModalState(!createModalState);
+  };
 
-            {createModalState && (
+  const handleOnRemove = async (item) => {
+    setRemoveDialog(true);
+    setSelectedRow(item);
+  };
+
+  return (
+    <>
+      <DashboardLayout>
+        <div>
+          <main className="main-content">
+            <section className="page-header">
+              <br />
+              <button
+                className="add-category-btn"
+                onClick={handleModalTransaction}
+              >
+                Yeni Soru Seti
+              </button>
+            </section>
+            {questions && questions?.length > 0 && (
+              <>
+                <TableLayout
+                  title="Soru Setleri"
+                  columns={[
+                    { label: 'Adı', field: 'name', normal: true },
+                    {
+                      label: 'Açıklama',
+                      field: 'description',
+                      normal: true,
+                    },
+                    {
+                      label: 'Durum',
+                      field: 'status',
+                      showChips: true,
+                      status: 'Aktif',
+                    },
+                    {
+                      label: 'Aksiyonlar',
+                      action: true,
+                    },
+                  ]}
+                  rows={questions}
+                  handleOnEdit={(e) => handleOnEdit(e)}
+                  handleOnRemove={(e) => handleOnRemove(e)}
+                />
+              </>
+            )}
+          </main>
+
+          {createModalState && (
+            <div style={{ zIndex: 99999 }}>
               <CreateQuestionSet
                 types={types}
                 record={selectedRow}
                 onAfterSave={handleOnAfterSave}
               />
-            )}
-          </div>
-        </DashboardLayout>
-        <Dialog
-          open={removeDialog}
-          onClose={handleRemoveDialogClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">
-            Kaydı Silmek İstediğinize Emin misiniz?
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Seçmiş olduğunuz 'Soru Seti' , sistemden tamamen kaldırılacaktır ,
-              işlemi onaylıyormusunuz ?
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleRemoveDialogClose}>Vazgeç</Button>
-            <Button onClick={handleRemoveDialogSubmit} autoFocus>
-              Kaydet
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </>
-    )
+            </div>
+          )}
+        </div>
+      </DashboardLayout>
+      <Dialog
+        open={removeDialog}
+        onClose={handleRemoveDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          Kaydı Silmek İstediğinize Emin misiniz?
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            {`Seçmiş olduğunuz '${selectedRow?.name}' başlıklı soruyu sistemden tamamen kaldırmak istediğinize eminmisiniz ?`}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleRemoveDialogClose}>Vazgeç</Button>
+          <Button onClick={handleRemoveDialogSubmit} autoFocus>
+            Kaydet
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
   );
 }
+
 export default ListQuestionSet;

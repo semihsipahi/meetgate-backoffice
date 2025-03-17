@@ -2,7 +2,13 @@ import { Box, Typography } from '@mui/material';
 import React from 'react';
 import ModernTable from './ModernTable';
 
-export default function TableLayout({ title, columns, rows }) {
+export default function TableLayout({
+  title,
+  columns,
+  rows,
+  handleOnEdit,
+  handleOnRemove,
+}) {
   return (
     <Box
       sx={{
@@ -23,7 +29,12 @@ export default function TableLayout({ title, columns, rows }) {
       >
         {title}
       </Typography>
-      <ModernTable columns={columns} rows={rows} />
+      <ModernTable
+        columns={columns}
+        rows={rows}
+        handleOnEdit={handleOnEdit}
+        handleOnRemove={handleOnRemove}
+      />
     </Box>
   );
 }
