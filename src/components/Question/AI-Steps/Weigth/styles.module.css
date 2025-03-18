@@ -1,0 +1,168 @@
+.weights_container {
+  width: 680px; /* Tasarımınıza göre değiştirebilirsiniz */
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+}
+
+.header_section {
+  margin-bottom: 16px;
+}
+
+.main_title {
+  font-size: 18px;
+  color: #222;
+  margin: 0;
+  font-weight: 600;
+}
+
+.sub_title {
+  font-size: 14px;
+  color: #666;
+  margin: 4px 0 16px 0;
+}
+
+.content_section {
+  display: flex;
+  gap: 20px;
+}
+
+/* Soru Listesi (Sol Taraf) */
+.questions_list {
+  flex: 1;
+}
+
+/* Tek bir soru kartı */
+.question_card {
+  display: flex;
+  align-items: center;
+  background-color: #f9f9ff;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border: 1px solid #e8e8e8;
+  gap: 12px;
+}
+
+.question_number {
+  min-width: 40px;
+  min-height: 40px;
+  background-color: #4c6fff;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.question_text_block {
+  flex: 1; /* Metin bloğunun kalan alanı kaplaması için */
+}
+
+.question_text {
+  font-size: 14px;
+  color: #333;
+  margin: 0;
+  font-weight: 500;
+}
+
+.weight_section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 70px; /* Yüzde alanının düzgün görünmesi için */
+}
+
+/* Range slider örneği */
+.weight_slider {
+  width: 100px;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.weight_label {
+  font-size: 13px;
+  color: #666;
+}
+
+/* Sağ Taraf: Özet (Toplam Ağırlık) */
+.summary_section {
+  width: 220px; /* Tasarıma göre ayarlayabilirsiniz */
+  background-color: #f9f9ff;
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.summary_title {
+  font-size: 14px;
+  color: #333;
+  margin: 0 0 16px 0;
+  font-weight: 600;
+}
+
+.circle_container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 12px;
+}
+
+.donut_chart {
+  transform: rotate(-90deg); /* Dairenin üstten başlaması için */
+}
+
+.donut_ring,
+.donut_segment {
+  transition: stroke-dasharray 0.3s ease;
+}
+
+.percentage_label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  color: #4c6fff;
+  font-weight: 600;
+}
+
+.summary_text {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.action_buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.prev_button,
+.next_button {
+  flex: 1; /* Butonların eşit pay alması için (isteğe bağlı) */
+  background-color: #4c6fff;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.prev_button:hover,
+.next_button:hover {
+  background-color: #3b55d9;
+}

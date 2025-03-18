@@ -1,15 +1,13 @@
 import React from 'react';
 import DashboardLayout from '../../../components/Common/dashboard/DashboardLayout';
-import TableLayout from '../../../components/Common/Table/TableLayout';
-import CreateAIQuestion from '../../../components/Question/AI-Steps/CreateAIQuestion';
+import StepLayout from '../../../components/Question/AI-Steps/Layout/Layout';
 import QuestionInfo from '../../../components/Question/Intro/QuestionIntro';
 
 function CreateQuestion() {
   return (
     <DashboardLayout>
       <QuestionInfo />
-      <TableLayout title="Sorular" />
-      <CreateAIQuestion />
+      <StepLayout />
     </DashboardLayout>
   );
 }
