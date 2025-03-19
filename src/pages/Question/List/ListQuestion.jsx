@@ -58,7 +58,7 @@ function ListQuestion() {
 
   return (
     <DashboardLayout>
-      <div className="main-content">
+      <div className="main-content-question">
         <section className="page-header">
           <br />
           <Button

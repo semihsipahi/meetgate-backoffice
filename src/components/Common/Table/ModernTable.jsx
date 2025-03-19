@@ -63,8 +63,8 @@ export default function ModernTable({
               {columns?.map((col, index) => (
                 <TableCell
                   key={index}
-                  align={col.align ? col.align : 'center'}
-                  sx={{ fontWeight: 600 }}
+                  align={col.align ? col.align : 'left'}
+                  sx={{ fontWeight: 600, border: 'none', pl: 5 }}
                 >
                   {col.label}
                 </TableCell>
@@ -84,7 +84,11 @@ export default function ModernTable({
                 {columns.map((col, cellIndex) => (
                   <>
                     {col.showChips && (
-                      <TableCell align="center" key={cellIndex}>
+                      <TableCell
+                        align="left"
+                        key={cellIndex}
+                        sx={{ border: 'none', pl: 5 }}
+                      >
                         <Box
                           sx={{ display: 'flex', justifyContent: 'center' }}
                           key={cellIndex}
@@ -100,7 +104,7 @@ export default function ModernTable({
                                 col.status === 'Aktif' ? '#0f5132' : '#842029',
                               fontSize: '0.875rem',
                               borderRadius: '8px',
-                              textAlign: 'center',
+                              textAlign: 'left',
                               px: 2,
                               py: 1,
                               '.MuiChip-label': {
@@ -113,13 +117,21 @@ export default function ModernTable({
                     )}
 
                     {col?.normal && (
-                      <TableCell key={cellIndex} align={'center'}>
+                      <TableCell
+                        sx={{ border: 'none', pl: 5 }}
+                        key={cellIndex}
+                        align={'left'}
+                      >
                         {row[col.field]}
                       </TableCell>
                     )}
 
                     {col?.action && (
-                      <TableCell key={cellIndex} align={'center'}>
+                      <TableCell
+                        sx={{ border: 'none', pl: 5 }}
+                        key={cellIndex}
+                        align={'left'}
+                      >
                         <IconButton
                           onClick={() => {
                             handleOnEdit(row);
@@ -146,7 +158,7 @@ export default function ModernTable({
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
-          alignItems: 'center',
+          alignItems: 'left',
           padding: '10px 20px',
         }}
       >

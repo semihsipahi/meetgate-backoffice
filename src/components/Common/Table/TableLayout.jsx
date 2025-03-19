@@ -13,10 +13,7 @@ export default function TableLayout({
     <Box
       sx={{
         width: '100%',
-        padding: '20px',
-        backgroundColor: '#fff',
         borderRadius: '12px',
-        boxShadow: '0px 4px 12px rgba(0,0,0,0.1)',
       }}
     >
       <Typography

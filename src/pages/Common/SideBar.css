@@ -16,24 +16,10 @@
   margin-top: 16px;
 }
 
-.sidebar-logo-icon {
-  width: 40px;
-  height: 40px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 8px;
-  font-size: 1.2rem;
-  color: #0027ff;
-}
-
 .sidebar-logo-text {
   font-size: 2rem;
-  font-weight: 600;
-  color: #0027ff;
+  font-weight: 500;
+  color: #000000;
   white-space: nowrap;
 }
 
@@ -63,6 +49,7 @@
   align-items: center;
   background: none;
   border: none;
+  width: 100%;
   outline: none;
   cursor: pointer;
   margin: 0.2rem 0;
@@ -89,7 +76,7 @@
 
 .sidebar-item.active {
   color: #ffffff;
-  background-color: #0027ff;
+  background-color: #001ec3;
 }
 
 .icon-box {
@@ -102,13 +89,13 @@
   width: 36px;
   height: 36px;
   margin-right: 0.8rem;
-  color: #171fb7;
+  color: #001ec3;
   flex-shrink: 0;
 }
 
 .icon-active-bg {
   background: #ffffff;
-  color: #0027ff;
+  color: #001ec3;
 }
 .chevron {
   margin-left: auto;
@@ -133,7 +120,7 @@
 }
 
 .sidebar-submenu li:hover {
-  color: #222ed3;
+  color: #001ec3;
 }
 
 .sidebar-whatsapp {
@@ -184,5 +171,5 @@
 }
 
 .sidebar-item.active .icon-box {
-  color: #0027ff;
+  color: #001ec3;
 }

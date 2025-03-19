@@ -6,7 +6,6 @@ import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
@@ -69,9 +68,12 @@ function ProfileMenu() {
       onMouseLeave={() => setOpenProfile(false)}
     >
       <div className="profile-container">
-        <div className="avatar-circle">
-          <PersonOutlineOutlinedIcon className="avatar-icon" />
-        </div>
+        <img
+          src="/images/meetgate-logo.png"
+          alt="Logo"
+          style={{ width: '20px', height: '28px', margin: '10px' }}
+        />
+
         <span className="profile-name">Kenan Sipahi</span>
         <KeyboardArrowDownOutlinedIcon
           className="arrow-icon"
