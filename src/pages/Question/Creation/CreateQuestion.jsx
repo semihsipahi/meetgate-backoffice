@@ -1,10 +1,14 @@
 import React from 'react';
+import DashboardLayout from '../../../components/Common/dashboard/DashboardLayout';
+import StepLayout from '../../../components/Question/AI-Steps/Layout/Layout';
+import QuestionInfo from '../../../components/Question/Intro/QuestionIntro';
 
 function CreateQuestion() {
   return (
-    <div>
-      <div>This is Create Question Page</div>
-    </div>
+    <DashboardLayout>
+      <QuestionInfo />
+      <StepLayout />
+    </DashboardLayout>
   );
 }
 

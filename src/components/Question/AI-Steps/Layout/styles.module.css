@@ -1,0 +1,9 @@
+.page_container {
+  display: flex;
+  align-items: flex-start; /* Üst kısımdan hizalama */
+  gap: 20px; /* İki bileşen arasındaki boşluk */
+  background-color: #f5f7fd;
+  min-height: 100vh;
+  padding: 20px;
+  justify-content: center;
+}

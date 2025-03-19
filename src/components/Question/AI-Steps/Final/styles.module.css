@@ -1,0 +1,137 @@
+.finalize_container {
+  width: 680px; /* Piksel perfect ayarlamak için değiştirilebilir */
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+}
+
+.header_section {
+  margin-bottom: 16px;
+}
+
+.main_title {
+  font-size: 18px;
+  color: #222;
+  margin: 0;
+  font-weight: 600;
+}
+
+.sub_title {
+  font-size: 14px;
+  color: #666;
+  margin: 4px 0 16px 0;
+}
+
+.questions_list {
+  margin-bottom: 24px;
+}
+
+/* Tek bir soru satırı */
+.question_item {
+  display: flex;
+  align-items: center;
+  background-color: #f9f9ff;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border: 1px solid #e8e8e8;
+  gap: 12px;
+}
+
+/* Soldaki yeşil onay ikonu */
+.check_icon {
+  width: 32px;
+  height: 32px;
+  background-color: #3ad07a; /* Yeşil ton */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Soru metni */
+.question_text {
+  flex: 1;
+  font-size: 14px;
+  color: #333;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Soru ağırlığı / yüzdelik */
+.question_weight {
+  min-width: 36px;
+  min-height: 36px;
+  background-color: #eaf8f0;
+  color: #3ad07a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Her Şey Hazır / Everything is Ready Bölümü */
+.ready_section {
+  text-align: center;
+  background-color: #f9f9ff;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.ready_icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 8px auto;
+  background-color: #3ad07a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ready_title {
+  font-size: 16px;
+  color: #333;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+.ready_description {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.footer_actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.prev_button,
+.create_button {
+  flex: 1; /* Butonların eşit pay alması için */
+  background-color: #4c6fff;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.prev_button:hover,
+.create_button:hover {
+  background-color: #3b55d9;
+}

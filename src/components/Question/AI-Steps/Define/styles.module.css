@@ -1,0 +1,159 @@
+.qna_container {
+  width: 680px; /* Tasarımınıza göre ayarlayabilirsiniz */
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+}
+
+.header_section {
+  margin-bottom: 16px;
+}
+
+.main_title {
+  font-size: 18px;
+  color: #222;
+  margin: 0;
+  font-weight: 600;
+}
+
+.sub_title {
+  font-size: 14px;
+  color: #666;
+  margin: 4px 0 16px 0;
+}
+
+.button_group {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.primary_button {
+  background-color: #4c6fff;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.primary_button:hover {
+  background-color: #3b55d9;
+}
+
+.secondary_button {
+  background-color: #a8b3ff;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.secondary_button:hover {
+  background-color: #8b9ae6;
+}
+
+.section_title {
+  font-size: 16px;
+  color: #222;
+  margin: 20px 0 12px 0;
+  font-weight: 600;
+}
+
+.question_card {
+  display: flex;
+  align-items: flex-start;
+  background-color: #f9f9ff;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border: 1px solid #e8e8e8;
+}
+
+.question_number {
+  min-width: 40px;
+  min-height: 40px;
+  background-color: #4c6fff;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-right: 12px;
+  font-size: 14px;
+}
+
+.question_content {
+  flex: 1; /* Metin alanının tamamını kaplaması için */
+}
+
+.question_text {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+  margin: 0 0 6px 0;
+}
+
+.question_description {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.question_actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-left: 12px;
+}
+
+.action_button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.action_button:hover {
+  background-color: #ebedff;
+}
+
+.action_buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.prev_button,
+.next_button {
+  flex: 1; /* Butonların eşit pay alması için (isteğe bağlı) */
+  background-color: #4c6fff;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.prev_button:hover,
+.next_button:hover {
+  background-color: #3b55d9;
+}
