@@ -66,7 +66,7 @@ export default function InterviewSelection() {
         sx={{
           backgroundColor: '#F8FAFF',
           borderRadius: '12px',
-          p: 1,
+
           '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
         }}
       >

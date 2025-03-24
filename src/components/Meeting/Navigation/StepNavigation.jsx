@@ -88,9 +88,15 @@ export default function StepNavigation({ setNavigationStep }) {
                 <img
                   src={Question}
                   alt="Question Icon"
-                  style={{ width: '30px', height: '30px' }}
+                  style={{
+                    width: '30px',
+                    height: '30px',
+                    filter: isActive ? 'brightness(0) invert(1)' : 'none',
+                    transition: 'filter 0.2s ease',
+                  }}
                 />
               </ListItemIcon>
+
               <ListItemText
                 primary={step.title}
                 secondary={step.subtitle}
