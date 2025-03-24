@@ -3,6 +3,7 @@ import { ToastContainer } from 'react-toastify';
 import '../src/global.css';
 import routes from './config/routes';
 import { AuthProvider } from './hooks/Auth/AuthContext';
+import { MeetingProvider } from './hooks/Meeting/MeetingContext';
 import { QuestionSetProvider } from './hooks/QuestionSet/QuestionSetContext';
 import { SideBarProvider } from './hooks/SideBar/SideBarContext';
 ('./i18n');
@@ -12,12 +13,14 @@ function App() {
     <Router>
       <AuthProvider>
         <SideBarProvider>
-          <QuestionSetProvider>
-            <ToastContainer />
-            <div style={{ backgroundColor: '#E9EEFA', minHeight: '100vh' }}>
-              <AppRoutes />
-            </div>
-          </QuestionSetProvider>
+          <MeetingProvider>
+            <QuestionSetProvider>
+              <ToastContainer />
+              <div style={{ backgroundColor: '#FFFFFF', minHeight: '100vh' }}>
+                <AppRoutes />
+              </div>
+            </QuestionSetProvider>
+          </MeetingProvider>
         </SideBarProvider>
       </AuthProvider>
     </Router>

@@ -4,6 +4,7 @@ import AnalyseResult from '../pages/Analyse/Result/AnalyseResult';
 import Login from '../pages/Auth/Login';
 import Blank from '../pages/Blank/Blank';
 import Home from '../pages/Home/Home';
+import CreateMeet from '../pages/Meet/Creation/CreateMeet';
 import CreateQuestion from '../pages/Question/Creation/CreateQuestion';
 import ListQuestion from '../pages/Question/List/ListQuestion';
 import ListQuestionSet from '../pages/QuestionSet/List/ListQuestionSet';
@@ -49,6 +50,12 @@ const routes = [
     path: '/analyse/result',
     element: createElement(PrivateRoute, {}, createElement(AnalyseResult)),
     title: 'Analyse Result',
+    protected: true,
+  },
+  {
+    path: '/meet/createmeet',
+    element: createElement(PrivateRoute, {}, createElement(CreateMeet)),
+    title: 'Create Meet',
     protected: true,
   },
 ];

@@ -1,5 +1,5 @@
 import React from 'react';
-import DashboardLayout from '../../../components/Common/dashboard/DashboardLayout';
+import DashboardLayout from '../../../components/Common/Dashboard/DashboardLayout';
 import StepLayout from '../../../components/Question/AI-Steps/Layout/Layout';
 import QuestionInfo from '../../../components/Question/Intro/QuestionIntro';
 
