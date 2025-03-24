@@ -14,7 +14,7 @@ export default function StepLayout() {
   };
 
   return (
-    <Box sx={{ mt: '10px', display: 'flex', justifyContent: 'center' }}>
+    <Box sx={{ m: '25px', display: 'flex', justifyContent: 'center' }}>
       <Box
         sx={{
           display: 'flex',
@@ -34,10 +34,8 @@ export default function StepLayout() {
         </Box>
         <Box
           sx={{
-            backgroundColor: '#F8FAFF',
-            borderRadius: 3,
+            backgroundColor: '#FFF',
             p: 2,
-            boxShadow: 1,
           }}
         >
           <StepContent activeStep={navigationStep} />
@@ -51,6 +49,8 @@ export default function StepLayout() {
                 color: '#fff',
                 borderRadius: '8px',
                 textTransform: 'none',
+                px: 15,
+                py: 2,
               }}
             >
               Sonraki Adım

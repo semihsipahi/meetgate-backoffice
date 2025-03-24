@@ -121,7 +121,7 @@ export default function SideBar() {
         width: drawerOpen ? 260 : 70,
         flexShrink: 0,
         '& .MuiDrawer-paper': {
-          width: drawerOpen ? 280 : 70,
+          width: drawerOpen ? 270 : 70,
           boxSizing: 'border-box',
           transition: 'width 0.3s ease',
           backgroundColor: '#F8FAFF',

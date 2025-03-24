@@ -1,36 +1,33 @@
-/* Ana kapsayıcı */
 .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 5px 25px;
 }
 
-/* Sol taraftaki metin bölümü */
 .left_content {
   display: flex;
   flex-direction: column;
-  max-width: 600px; /* İsteğe göre ayarlayabilirsiniz */
+  max-width: 600px;
 }
 
 .left_content h1 {
-  font-size: 36px; /* Başlık boyutu */
+  font-size: 36px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
 .left_content p {
-  font-size: 16px; /* Metin boyutu */
+  font-size: 16px;
   color: #666;
   line-height: 1.5;
 }
 
-/* Butonlar */
 .buttons {
   display: flex;
-  gap: 12px; /* Butonlar arası boşluk */
+  gap: 12px;
 }
 
 .btn {
@@ -43,31 +40,58 @@
   transition: all 0.2s ease-in-out;
 }
 
-/* 1. Buton: Elite + */
 .btn_elite {
-  background-color: #0052ff; /* Mavi ton */
+  background-color: #0052ff;
   color: #fff;
 }
 .btn_elite:hover {
-  background-color: #003fcc; /* Hover rengi */
+  background-color: #003fcc;
 }
 
-/* 2. Buton: Hazır Stok Siteler */
 .btn_hazir {
-  background-color: #9b51e0; /* Mor ton */
+  background-color: #9b51e0;
   color: #fff;
 }
 .btn_hazir:hover {
-  background-color: #823ec0; /* Hover rengi */
+  background-color: #823ec0;
 }
 
-/* 3. Buton: Taslaklar (Sadece çerçeve) */
 .btn_taslaklar {
   background-color: transparent;
-  color: #0052ff; /* Çerçeve ve yazı rengi */
+  color: #0052ff;
   border: 2px solid #0052ff;
 }
 .btn_taslaklar:hover {
   background-color: #0052ff;
   color: #fff;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 10px 15px;
+  }
+
+  .left_content {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .left_content h1 {
+    font-size: 28px;
+  }
+
+  .left_content p {
+    font-size: 14px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
 }

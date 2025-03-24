@@ -1,4 +1,3 @@
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import {
   Box,
   List,
@@ -8,6 +7,7 @@ import {
   Typography,
 } from '@mui/material';
 import React, { useState } from 'react';
+import Question from '../../../assets/Icons/question.svg';
 
 export const STEPS = [
   {
@@ -42,7 +42,6 @@ export default function StepNavigation({ setNavigationStep }) {
 
   const handleStepChange = (stepKey) => {
     setActiveStep(stepKey);
-
     if (setNavigationStep) {
       setNavigationStep(stepKey);
     }
@@ -51,7 +50,7 @@ export default function StepNavigation({ setNavigationStep }) {
   return (
     <Box
       sx={{
-        width: 320,
+        width: 300,
         backgroundColor: '#FFFFF',
       }}
     >
@@ -65,7 +64,6 @@ export default function StepNavigation({ setNavigationStep }) {
       <List disablePadding>
         {STEPS.map((step) => {
           const isActive = activeStep === step.key;
-
           return (
             <ListItemButton
               key={step.key}
@@ -83,11 +81,15 @@ export default function StepNavigation({ setNavigationStep }) {
             >
               <ListItemIcon
                 sx={{
-                  color: isActive ? '#fff' : '#0061FF',
                   minWidth: 40,
+                  color: isActive ? '#fff' : '#0061FF',
                 }}
               >
-                <HelpOutlineIcon />
+                <img
+                  src={Question}
+                  alt="Question Icon"
+                  style={{ width: '30px', height: '30px' }}
+                />
               </ListItemIcon>
               <ListItemText
                 primary={step.title}
